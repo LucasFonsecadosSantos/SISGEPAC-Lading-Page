@@ -1,0 +1,29 @@
+{
+  "name": "sisgepac-landing-pafe",
+  "version": "1.0.0",
+  "description": "A simple ui interface for Sisgepac application.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasFonsecadosSantos/SISGEPAC-Lading-Page.git"
+  },
+  "author": "Lucas Fonseca dos Santos",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/LucasFonsecadosSantos/SISGEPAC-Lading-Page/issues"
+  },
+  "homepage": "https://github.com/LucasFonsecadosSantos/SISGEPAC-Lading-Page#readme",
+  "devDependencies": {
+    "gulp-concat": "^2.6.1",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
