@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        include modules/settings/_mixins.pug
+        //PARAMS
+        //title,description,author,copyright,themeColor,language
+        +headerSettings("SISGEPAC | Sistema de Geração de Páginas para Congressos.")
+        include modules/settings/_link-imports.pug
+    
+    body
+        header
+            include modules/components/_header.pug
+        
+        main
+        
+        footer
+            include modules/components/_footer.pug

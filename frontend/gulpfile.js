@@ -3,6 +3,7 @@ var sass        =   require('gulp-sass');
 var pug         =   require('gulp-concat');
 var typescript  =   require('gulp-typescript');
 var concat      =   require('gulp-concat');
+var browserSync =   require('browser-sync').create();
 
 var tsProject   =   typescript.createProject('./typescript/tsconfig.json');
 
@@ -15,21 +16,18 @@ gulp.task('sass-compile', () => {
 
             }))
             .pipe(concat('core.css'))
-            .pipe(gulp.dest('./../src/ext/css'));
+            .pipe(gulp.dest('./../dist/ext/css'));
             
     
 });
 
-gulp.task('pug-compile', () => {
+gulp.task('local-pug-compile', () => {
 
-    return gulp.src(['*.pug', 'sass/**/*.sass'])
+    return gulp.src(['*.pug','./pug/**/*.pug'])
             .pipe(pug().on('error', error => {
-
                 console.log('Error on pug compilation: ' + error);
-
             }))
-            .pipe(concat('index.html'))
-            .pipe(gulp.dest('./../src'));
+            .pipe(gulp.dest('./../dist/'));
 
 });
 
@@ -41,16 +39,24 @@ gulp.task('typescript-compile', () => {
                 console.log('Error on typescript compilation: ' + error);
 
             }))
-            .pipe(gulp.dest('./../src/ext/js'))
+            .pipe(gulp.dest('./../dist/ext/js'));
 
 });
 
 gulp.task('monitor', () => {
 
-    gulp.watch(['*.sass', 'sass/**/*.sass'],    gulp.series('sass-compile'));
-    gulp.watch(['*.pug', 'pug/**/*.pug'],       gulp.series('pug-compile'));
-    gulp.watch(['*.pug', 'typescript/**/*.ts'], gulp.series('typescript-compile'));
+    gulp.watch(['*.sass',   './sass/**/*.sass'],        gulp.series('sass-compile'));
+    gulp.watch(['*.pug',    './pug/**/*.pug'],          gulp.series('local-pug-compile'));
+    gulp.watch(['*.ts',     './typescript/**/*.ts'],    gulp.series('typescript-compile'));
+    // gulp.watch('./../dist/**/*.html', browserSync.reload);
+    // browserSync.init({
 
+    //     server: {
+    //         baseDir: './../dist'
+    //     }
+
+    // });
+    
 });
 
 gulp.task('default', gulp.series('monitor'));
